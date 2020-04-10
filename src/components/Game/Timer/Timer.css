@@ -1,0 +1,24 @@
+.timer {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: height 1s;
+}
+
+.blinker.blinker {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0.25;
+    }
+}
+
+.timer.blue {
+    background-color: #3c3b6e;
+}
+
+.timer.red {
+    background-color: #b22234;
+}

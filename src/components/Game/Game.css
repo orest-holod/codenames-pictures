@@ -1,0 +1,90 @@
+@font-face {
+    font-family: Clip;
+    src: url("https://acupoftee.github.io/fonts/Clip.ttf");
+}
+
+.game {
+    display: flex;
+    width: 100vw;
+    max-width: 100vh;
+    height: 100vw;
+    max-height: 100vh;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    font-size: 1.6vw;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-aspect-ratio: 1/1) {
+    .game {
+        font-size: 1.6vh;
+    }
+}
+
+.game-controls {
+    display: flex;
+    width: 100%;
+    height: 5%;
+}
+
+.game-timer {
+    display: flex;
+    width: 1.5%;
+    height: 95%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.game-board {
+    position: relative;
+    display: flex;
+    width: 95%;
+    height: 95%;
+}
+
+.paused:after,
+.winner:after {
+    content: '';
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1%;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 8em;
+}
+
+.paused:after {
+    content: 'Paused';
+    color: rgba(255, 255, 255, 0.5);
+    /*animation: blinker 4s ease-in-out infinite;*/
+}
+
+.red.winner:after {
+    content: 'Red wins!';
+    background: radial-gradient(#b22234, rgba(255, 255, 255, 0.0));
+}
+
+.blue.winner:after {
+    content: 'Blue wins!';
+    background: radial-gradient(#3c3b6e, rgba(255, 255, 255, 0.0));
+}
+
+.paused.blue:after {
+    background: radial-gradient(#3c3b6e, rgba(255, 255, 255, 0.0));
+}
+
+.paused.red:after {
+    background: radial-gradient(#b22234, rgba(255, 255, 255, 0.0));
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
