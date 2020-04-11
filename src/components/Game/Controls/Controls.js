@@ -3,7 +3,7 @@ import React from 'react';
 import './Controls.css';
 
 const Controls = (props) => {
-    const { turnSide, turnPaused, winnerSide, onPlay, onPauseTurn, onResumeTurn, onEndTurn, spymasterLink } = props;
+    const { turnSide, turnPaused, rulesShown, winnerSide, onRules, onPlay, onPauseTurn, onResumeTurn, onEndTurn, spymasterLink } = props;
 
     return (
         <div className={`controls ${turnSide.toLowerCase()}`}>
@@ -22,26 +22,34 @@ const Controls = (props) => {
                 End Turn
             </div>
             <div
-                className={`control pause-turn ${winnerSide || turnPaused ? 'disabled' : ''} ${turnSide.toLowerCase()}`}
+                className={`control pause-turn ${winnerSide ? 'disabled' : ''} ${turnSide.toLowerCase()}`}
                 onClick={() => {
-                    if (!winnerSide || turnPaused) {
+                    if (winnerSide) {
+                        return;
+                    }
+
+                    if (turnPaused) {
+                        onResumeTurn();
+                    }
+
+                    if (!turnPaused) {
                         onPauseTurn();
                     }
                 }}>
-                Pause Turn
-            </div>
-            <div
-                className={`control resume-turn ${winnerSide || !turnPaused ? 'disabled' : ''} ${turnSide.toLowerCase()}`}
-                onClick={() => {
-                    if (!winnerSide || !turnPaused) {
-                        onResumeTurn();
-                    }
-                }}>
-                Resume Turn
+                {
+                    turnPaused ?
+                        <span>Resume Turn</span> :
+                        <span>Pause Turn</span>
+                }
             </div>
             <div
                 className={`control spymaster-mode ${turnSide.toLowerCase()}`}>
                 <a className='spymaster-link' href={spymasterLink} target='_blank' rel='noopener noreferrer'>Spymaster Mode</a>
+            </div>
+            <div
+                className={`control new-game ${rulesShown ? 'disabled' : ''} ${turnSide.toLowerCase()}`}
+                onClick={() => onRules()}>
+                Rules
             </div>
         </div>
     );

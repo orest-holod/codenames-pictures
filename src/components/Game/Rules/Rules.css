@@ -1,0 +1,39 @@
+.rules {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 1%;
+    flex-direction: column;
+    background: linear-gradient(
+            to right,
+            #3c3b6e 0%,
+            #b22234 100%
+    );
+    font-weight: bold;
+}
+
+.rules-header {
+    text-align: center;
+}
+
+.rules-header h1 {
+    margin-bottom: 0;
+}
+
+.rules-content {
+    display: flex;
+}
+
+.rules-footer {
+    text-align: center;
+}
+
+.rule {
+    text-align: justify;
+    width: 50%;
+    padding: 1%;
+}
+
+.rule h2 {
+    text-align: center;
+}

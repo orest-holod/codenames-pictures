@@ -5,6 +5,7 @@ import {CARD_TYPE} from './Card/Card.constants';
 
 import Controls from './Controls/Controls';
 import Board from './Board/Board';
+import Rules from './Rules/Rules';
 import Timer from './Timer/Timer';
 import Card from './Card/Card';
 
@@ -30,6 +31,7 @@ const Game = (props) => {
     const [cards, setCards] = useState(game.cards);
     const [gameConfig, setGameConfig] = useState(game.gameConfig);
     const [flippedCards, setFlippedCards] = useState({latest: null, all: []});
+    const [rulesShown, setRulesShown] = useState(false);
 
     const spymasterLink = useMemo(() => generateSpymasterLink(cards, gameConfig), [cards, gameConfig]);
 
@@ -48,8 +50,29 @@ const Game = (props) => {
             latest: null,
             all: []
         });
+        setRulesShown(false);
 
         turn.reset();
+    };
+
+    const endTurn = () => {
+        turn.end();
+        setRulesShown(false);
+    };
+
+    const pauseTurn = () => {
+        turn.pause();
+        setRulesShown(false);
+    };
+
+    const resumeTurn = () => {
+        turn.resume();
+        setRulesShown(false);
+    };
+
+    const showRules = () => {
+        turn.pause();
+        setRulesShown(true);
     };
 
     const handleCardClick = (card) => {
@@ -75,11 +98,13 @@ const Game = (props) => {
                             turnSide={turn.side}
                             turnPaused={turn.paused}
                             winnerSide={winner.side}
+                            rulesShown={rulesShown}
                             spymasterLink={spymasterLink}
                             onPlay={newGame}
-                            onEndTurn={turn.end}
-                            onPauseTurn={turn.pause}
-                            onResumeTurn={turn.resume}
+                            onEndTurn={endTurn}
+                            onPauseTurn={pauseTurn}
+                            onResumeTurn={resumeTurn}
+                            onRules={showRules}
                         />
                     </div>
             }
@@ -94,23 +119,30 @@ const Game = (props) => {
                         />
                     </div>
             }
-            <div className={`game-board ${winner.side ? `winner ${winner.side.toLowerCase()}` : ''} ${!winner.side && turn.paused ? `paused ${turn.side.toLowerCase()}` : ''}`}>
-                <Board
-                    size={gameConfig.boardConfig.size}
-                    cards={cards.map((card) => {
-                        return (
-                            <Card
-                                key={card.id}
-                                type={card.type}
-                                side={card.side}
-                                picture={card.picture}
-                                flippable={!spymasterKey && !winner.side}
-                                flipped={spymasterKey || flippedCards.all.includes(card)}
-                                onClick={() => handleCardClick(card)}
-                            />
-                        );
-                    })}/>
-            </div>
+            {
+                rulesShown ?
+                    <div className='game-rules'>
+                        <Rules />
+                    </div> :
+                    <div
+                        className={`game-board ${winner.side ? `winner ${winner.side.toLowerCase()}` : ''} ${!winner.side && turn.paused ? `paused ${turn.side.toLowerCase()}` : ''}`}>
+                        <Board
+                            size={gameConfig.boardConfig.size}
+                            cards={cards.map((card) => {
+                                return (
+                                    <Card
+                                        key={card.id}
+                                        type={card.type}
+                                        side={card.side}
+                                        picture={card.picture}
+                                        flippable={!spymasterKey && !winner.side}
+                                        flipped={spymasterKey || flippedCards.all.includes(card)}
+                                        onClick={() => handleCardClick(card)}
+                                    />
+                                );
+                            })}/>
+                    </div>
+            }
             {
                 spymasterKey ?
                     null :

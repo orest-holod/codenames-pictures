@@ -5,6 +5,7 @@
 
 .game {
     display: flex;
+    position: relative;
     width: 100vw;
     max-width: 100vh;
     height: 100vw;
@@ -41,6 +42,15 @@
     display: flex;
     width: 95%;
     height: 95%;
+}
+
+.game-rules {
+    display: flex;
+    position: absolute;
+    top: 6%;
+    right: 3.5%;
+    left: 3.5%;
+    bottom: 1%;
 }
 
 .paused:after,
