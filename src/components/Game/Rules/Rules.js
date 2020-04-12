@@ -59,7 +59,7 @@ const Rules = () => {
                             <li>If they guess a picture that's not theirs.</li>
                             <li>If they choose to not guess anymore.</li>
                             <li>If they have already made as many guesses as the number specified by the clue plus one more.</li>
-                            <li>If heir turn's time is over (flashing lines on the sides are shortening according to the time left).</li>
+                            <li>If their turn's time is over (flashing lines on the sides are shortening according to the time left).</li>
                         </ul>
                     <p>
                         The game ends when one team has all their
@@ -74,9 +74,6 @@ const Rules = () => {
                         team loses.
                     </p>
                 </article>
-            </div>
-            <div className='rules-footer'>
-                <h1>Happy coding & decoding!</h1>
             </div>
         </div>
     );
