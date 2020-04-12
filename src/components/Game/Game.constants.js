@@ -20,7 +20,7 @@ const GAME_CONFIG = {
             }
         },
         turnConfig: {
-            timeout: 180000, // 3 minutes = 180000 milliseconds
+            timeout: 120000, // 2 minutes = 120000 milliseconds
         }
     },
     INTERMEDIATE: {
@@ -40,7 +40,7 @@ const GAME_CONFIG = {
             }
         },
         turnConfig: {
-            timeout: 180000, // 3 minutes = 180000 milliseconds
+            timeout: 120000, // 2 minutes = 120000 milliseconds
         }
     },
     ADVANCED: {
@@ -60,7 +60,7 @@ const GAME_CONFIG = {
             }
         },
         turnConfig: {
-            timeout: 180000, // 3 minutes = 180000 milliseconds
+            timeout: 120000, // 2 minutes = 120000 milliseconds
         }
     }
 };
