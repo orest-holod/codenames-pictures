@@ -1,11 +1,11 @@
 import bigInt from "big-integer";
 
-import {pictures} from '../../images/card-front/packs/unsplash';
+import {images} from '../../images/card-front/packs/unsplash';
 import {CARD_SIDE, CARD_TYPE} from "./Card/Card.constants";
 import {GAME_CONFIG} from "./Game.constants";
 
 function generateCards(gameConfig) {
-    const shuffledPictures = shuffle(pictures);
+    const shuffledPictures = shuffle(images);
 
     const cards = [];
 
