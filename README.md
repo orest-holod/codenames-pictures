@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Play classic board game Codenames: Pictures online!
 
-In the project directory, you can run:
+Open [https://orest-holod.github.io/codenames-pictures/](https://orest-holod.github.io/codenames-pictures/) to play it in the browser.
 
-### `yarn start`
+## Overview
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Strange pics on the grid code locations where spies must contact secret agents!
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Players split up into two teams of similar size. You need at least four players (two teams of two) for a standard game.
 
-### `yarn test`
+Each team chooses one player to be their spymaster.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Two spymasters know the agent in each location. They deliver coded messages telling their teammates where to go for a contact. Teammates must be clever. A decoding mistake could lead to an unpleasant encounter with an enemy agent – or worse, with the assassin!
 
-### `yarn build`
+Randomly chosen 25 pictures are placed on the 5 × 5 grid. These represent locations where the teammates can meet agents.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Game has a spymaster mode that shows who can be found in each location. The spymasters switch to spymaster mode by clicking on 'Spymaster Mode' button. And don't let the teammates see the spymaster mode.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The spymaster mode corresponds to the grid. Blue squares correspond to pictures that Blue Team must guess (locations with blue agents). Red squares correspond to pictures that Red Team must guess (locations with red agents). White squares have innocent bystanders, and the special square hides an assassin!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Game Play
 
-### `yarn eject`
+Spymasters take turns giving a clue consists of one word that relates to pictures and one number that tells how many of your pictures relate to that word. The teammates try to guess which pictures their spymaster meant. If it is one of their team's agents, the teammates may keep guessing locations related to that one-word clue. Otherwise, it is the other team's turn. The first team to contact all their agents wins the game.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Team's turn is indicated by the flashing lines on the sides of the grid. On your team's turn the spymaster gives one clue, and the teammates may make multiple guesses.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The turn ends:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* If they guess a picture that's not theirs.
+* If they choose to not guess anymore.
+* If they have already made as many guesses as the number specified by the clue plus one more.
+* If their turn's time is over (flashing lines on the sides are shortening according to the time left).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The game ends when one team has all their pictures covered. That team wins.
 
-## Learn More
+It is possible to win on the other team's turn if they guess your last picture.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The game can end early if a team reveals the location with the assassin. That team loses.
