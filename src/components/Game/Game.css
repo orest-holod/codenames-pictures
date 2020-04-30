@@ -54,10 +54,11 @@
 }
 
 .paused:after,
-.winner:after {
+.winner {
     content: '';
     position: absolute;
     display: flex;
+    flex-direction: column;
     top: 0;
     right: 0;
     bottom: 0;
@@ -75,13 +76,11 @@
     /*animation: blinker 4s ease-in-out infinite;*/
 }
 
-.red.winner:after {
-    content: 'Red wins!';
+.red.winner {
     background: radial-gradient(#b22234, rgba(255, 255, 255, 0.0));
 }
 
-.blue.winner:after {
-    content: 'Blue wins!';
+.blue.winner {
     background: radial-gradient(#3c3b6e, rgba(255, 255, 255, 0.0));
 }
 

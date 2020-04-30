@@ -29,6 +29,10 @@ const Game = (props) => {
     }, [spymasterKey]);
 
     const [cards, setCards] = useState(game.cards);
+    const [score, setScore] = useState({
+        [CARD_SIDE.BLUE]: 0,
+        [CARD_SIDE.RED]: 0
+    });
     const [gameConfig, setGameConfig] = useState(game.gameConfig);
     const [flippedCards, setFlippedCards] = useState({latest: null, all: []});
     const [rulesShown, setRulesShown] = useState(false);
@@ -40,6 +44,9 @@ const Game = (props) => {
 
     useEffect(() => {
         if (winner.side) {
+            setScore((score) => {
+                return {...score, [winner.side]: score[winner.side] + 1};
+            });
             turn.pause();
         }
     }, [winner.side]);
@@ -122,10 +129,10 @@ const Game = (props) => {
             {
                 rulesShown ?
                     <div className='game-rules'>
-                        <Rules />
+                        <Rules/>
                     </div> :
                     <div
-                        className={`game-board ${winner.side ? `winner ${winner.side.toLowerCase()}` : ''} ${!winner.side && turn.paused ? `paused ${turn.side.toLowerCase()}` : ''}`}>
+                        className={`game-board ${!winner.side && turn.paused ? `paused ${turn.side.toLowerCase()}` : ''}`}>
                         <Board
                             size={gameConfig.boardConfig.size}
                             cards={cards.map((card) => {
@@ -140,7 +147,28 @@ const Game = (props) => {
                                         onClick={() => handleCardClick(card)}
                                     />
                                 );
-                            })}/>
+                            })}
+                        />
+                        {
+                            winner.side ?
+                                <div className={`winner ${winner.side.toLowerCase()}`}>
+                                    {
+                                        winner.side === CARD_SIDE.RED && <span>Red wins!</span>
+                                    }
+                                    {
+                                        winner.side === CARD_SIDE.BLUE && <span>Blue wins!</span>
+                                    }
+                                    {
+                                        <div>
+                                            <span>{score[CARD_SIDE.BLUE]}</span>
+                                            <span> - </span>
+                                            <span>{score[CARD_SIDE.RED]}</span>
+                                        </div>
+                                    }
+                                </div> :
+                                null
+                        }
+
                     </div>
             }
             {
