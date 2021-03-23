@@ -4,9 +4,24 @@ import {images} from '../../images/card-front/packs/unsplash';
 import {CARD_SIDE, CARD_TYPE} from "./Card/Card.constants";
 import {GAME_CONFIG} from "./Game.constants";
 
-function generateCards(gameConfig) {
-    const shuffledPictures = shuffle(images);
+const pictures = generatePictures(images);
 
+function* generatePictures(images) {
+    let shuffledImages = shuffle(images);
+    let i = 0;
+
+    while (true) {
+        if (i === shuffledImages.length) {
+            shuffledImages = shuffle(images);
+
+            i = 0;
+        }
+
+        yield shuffledImages[i++];
+    }
+}
+
+function generateCards(gameConfig) {
     const cards = [];
 
     Object.keys(gameConfig.cardsConfig).forEach((cardType) => {
@@ -16,7 +31,7 @@ function generateCards(gameConfig) {
                     id: cards.length,
                     type: cardType,
                     side: cardSide,
-                    picture: shuffledPictures[cards.length]
+                    picture: pictures.next().value
                 });
             }
         });

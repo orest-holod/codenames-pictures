@@ -1011,7 +1011,6 @@ const images = [
     img259,
     img260,
     img261,
-    img261,
     img262,
     img263,
     img264,
